@@ -86,7 +86,7 @@ exports.read = function(req, res, next){
   var outcome = {};
 
   var getAccountGroups = function(callback) {
-    req.app.db.models.AccountGroup.find({}, 'name').sort('name').exec(function(err, accountGroups) {
+    req.app.db.models.AccountGroup.find({}, 'name').sort('name').populate('groups', 'name').exec(function(err, accountGroups) {
       if (err) {
         return callback(err, null);
       }
